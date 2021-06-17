@@ -44,6 +44,10 @@ namespace LifeEnterpot.Core.ModelCustom
         public bool IsChosen { get; set; }
         public string ProductUrl { get; set; }
         public int sort { get; set; }
-    };
+    }
+    public class TaishinCacheData<T>
+    {
+        public T Data { get; set; }
+    }
 
 };

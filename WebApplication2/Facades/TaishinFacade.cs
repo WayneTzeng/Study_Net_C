@@ -4,14 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using LifeEnterpot.Core.ModelCustom;
 using LifeEnterpot.Core.Models;
+using LifeEnterpot.Core.Kernel;
+using LifeEnterpot.Core.Providers;
+using LifeEnterpot.Core.Enums;
+
 
 namespace LifeEnterpot.Core.Facades
-
 {
     public class TaishinFacade
     {
-
-        public static TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
+        static IProductProvider pp = Ioc.Get<IProductProvider>();
+        static IAppLayoutProvider alp = Ioc.Get<IAppLayoutProvider>();
+        public static TaishinProductDeals
+            TodayHotDeals(Guid channelId, string channelHost)
         {
             ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
             if (main == null)
@@ -85,10 +90,10 @@ namespace LifeEnterpot.Core.Facades
 
             #endregion 因應雙11先手動塞策展檔次，結束後拿掉
             //雙12增加Config手動加策展，後續討論轉存DB
-            if (config.APP_TodayHotDeals.Any())
-            {
-                deals.AddRange(config.APP_TodayHotDeals);
-            }
+            //if (config.APP_TodayHotDeals.Any())
+            //{
+            //    deals.AddRange(config.APP_TodayHotDeals);
+            //}
 
             foreach (var pd in products)
             {

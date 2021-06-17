@@ -14,5 +14,9 @@ namespace LifeEnterpot.Core.Providers
         ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num);
         #endregion AppLayoutMain
 
+        #region AppLayoutProduct
+        List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid);
+        AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid);
+        #endregion AppLayoutProduct
     }
 }

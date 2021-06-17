@@ -19,7 +19,7 @@ using System.Net.Mime;
 
 namespace LifeEnterpot.Core.Facades
 {
-    public class TaishinFacade
+    public class TaishinCacheFacade
     {
 
         //static IProductProvider pp = Ioc.Get<IProductProvider>();
@@ -28,10 +28,12 @@ namespace LifeEnterpot.Core.Facades
         /// 取得APP 首頁 TodayHotDeals
         /// </summary>
         /// <returns></returns>
+        
         public static TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
         {
+            string UR = "Facade成功";
             string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
-            TaishinCacheData<TaishinProductDeals> result = //CacheFacade.Get<TaishinCacheData<TaishinProductDeals>>(key);
+            TaishinCacheData<TaishinProductDeals> result = UR ;//CacheFacade.Get<TaishinCacheData<TaishinProductDeals>>(key);
             if (result == null)
             {
                 var data = TaishinFacade.TodayHotDeals(channelId, channelHost);

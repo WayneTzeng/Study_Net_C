@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Http;
 
 namespace LifeEnterpot.WebAPI.Controllers
 {
-    [ChannelPermission]
+    //[ChannelPermission]
     public class BackendChannelController : BaseController
     {
-        public ChannelInfo ChannelInfo
-        {
-            get
-            {
-                CentralIdentity user = HttpContext.User.Identity as CentralIdentity;
-                if (user != null)
-                {
-                    return new ChannelInfo
-                    {
-                        ChannelId = user.ChannelId.Value,
-                        CreateId = user.Name
-                    };
-                }
-                return null;
-            }
-        }
+        //public ChannelInfo ChannelInfo
+        //{
+        //    get
+        //    {
+        //        CentralIdentity user = HttpContext.User.Identity as CentralIdentity;
+        //        if (user != null)
+        //        {
+        //            return new ChannelInfo
+        //            {
+        //                ChannelId = user.ChannelId.Value,
+        //                CreateId = user.Name
+        //            };
+        //        }
+        //        return null;
+        //    }
+        //}
     }
     public class BaseController : Controller
     {

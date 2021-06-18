@@ -7,14 +7,16 @@ using LifeEnterpot.Core.Models;
 using LifeEnterpot.Core.Kernel;
 using LifeEnterpot.Core.Providers;
 using LifeEnterpot.Core.Enums;
-
+using LifeEnterpot.Core.MockData;
 
 namespace LifeEnterpot.Core.Facades
 {
     public class TaishinFacade
     {
         static IProductProvider pp = Ioc.Get<IProductProvider>();
+
         static IAppLayoutProvider alp = Ioc.Get<IAppLayoutProvider>();
+
         public static TaishinProductDeals
             TodayHotDeals(Guid channelId, string channelHost)
         {

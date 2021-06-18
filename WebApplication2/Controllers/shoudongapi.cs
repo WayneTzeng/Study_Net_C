@@ -11,7 +11,8 @@ using LifeEnterpot.Core.Enums;
 using LifeEnterpot.Core.ModelCustom;
 using LifeEnterpot.Core.Facades;
 using LifeEnterpot.Core.Kernel;
-using LifeEnterpot.Core.ModelCustom;
+using log4net;
+
 
 
 
@@ -21,6 +22,7 @@ namespace FakeXiecheng.API.Controllers
     [ApiController]
     public class Shoudongapi : Controller
     {
+        static ILog logger = LogManager.GetLogger(typeof(Shoudongapi));
         [HttpGet]
         public dynamic TodayHotDeals()
         {
@@ -30,11 +32,11 @@ namespace FakeXiecheng.API.Controllers
             string Test01 = "654321";
             try
             {
-                //return new ApiResult
-                //{
-                //    Code = ApiResultCode.OAuthTokerNoAuth,
-                //    Message = Test,
-                //};
+                return new ApiResult
+                {
+                    Code = ApiResultCode.OAuthTokerNoAuth,
+                    Message = Test,
+                };
 
                 //string channelToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
                 ////bool tokenLeg = FrontFacade.TryGetChannelId(channelToken, out channelId, out channelHost);
@@ -58,7 +60,7 @@ namespace FakeXiecheng.API.Controllers
             }
             catch (Exception ex)
             {
-                //logger.Warn("取得API todayHotDeals 資料時發生錯誤.", ex);
+                logger.Warn("取得API todayHotDeals 資料時發生錯誤.", ex);
                 throw new Exception("取得API資料時發生錯誤.");
             }
 

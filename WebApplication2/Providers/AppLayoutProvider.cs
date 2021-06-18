@@ -18,14 +18,18 @@ namespace LifeEnterpot.Core.Providers
         {
             using (var dbx = new CommonDbContext())
             {
-                //return dbx.AppLayoutMainSet.Where(x => x.ChannelId.Equals(channelId)
-                //            && x.SectionId.Equals(sectionId)
-                //            && x.MainId.Equals(mainId))
-                //    .OrderByDescending(t => t.CreateTime).FirstOrDefault();
+                return dbx.applayoutmainset.where(x => x.channelid.equals(channelid)
+                            && x.sectionid.equals(sectionid)
+                            && x.mainid.equals(mainid))
+                    .orderbydescending(t => t.createtime).firstordefault();
             }
         }
         public AppLayoutMain AppLayoutMainGet(int id)
         {
+            int Id = 200;
+
+            //return AppLayoutMainSet.(Id);
+            
             //using (var dbx = new CommonDbContext())
             //{
             //    return dbx.AppLayoutMainSet.Where(x => x.Id.Equals(id)).FirstOrDefault();

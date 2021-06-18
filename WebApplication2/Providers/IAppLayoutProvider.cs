@@ -18,5 +18,7 @@ namespace LifeEnterpot.Core.Providers
         List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid);
         AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid);
         #endregion AppLayoutProduct
+
+
     }
 }

@@ -33,7 +33,7 @@ namespace LifeEnterpot.Core.Facades
         {
             string UR = "Facade成功";
             string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
-            TaishinCacheData<TaishinProductDeals> result = UR ;//CacheFacade.Get<TaishinCacheData<TaishinProductDeals>>(key);
+            TaishinCacheData<TaishinProductDeals> result = UR;//CacheFacade.Get<TaishinCacheData<TaishinProductDeals>>(key);
             if (result == null)
             {
                 var data = TaishinFacade.TodayHotDeals(channelId, channelHost);

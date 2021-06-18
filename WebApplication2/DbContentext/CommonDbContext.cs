@@ -197,16 +197,16 @@ namespace LifeEnterpot.Core.DbContenxts
 
         //    public DbSet<AuditLog> AuditLogSet { get; set; }
 
-        //    #region APP首頁版面
-        //    public DbSet<AppLayoutAction> AppLayoutActionSet { get; set; }
-        //    public DbSet<AppLayoutChannel> AppLayoutChannelSet { get; set; }
-        //    public DbSet<AppLayoutCuration> AppLayoutCurationSet { get; set; }
-        //    public DbSet<AppLayoutMain> AppLayoutMainSet { get; set; }
-        //    public DbSet<AppLayoutArticle> AppLayoutArticleSet { get; set; }
-        //    public DbSet<AppLayoutProduct> AppLayoutProductSet { get; set; }
-        //    public DbSet<AppLayoutSection> AppLayoutSectionSet { get; set; }
-        //    public DbSet<ViewAppLayoutMain> ViewAppLayoutMainSet { get; set; }
-        //    #endregion
+            #region APP首頁版面
+            //public DbSet<AppLayoutAction> AppLayoutActionSet { get; set; }
+            //public DbSet<AppLayoutChannel> AppLayoutChannelSet { get; set; }
+            //public DbSet<AppLayoutCuration> AppLayoutCurationSet { get; set; }
+            public DbSet<AppLayoutMain> AppLayoutMainSet { get; set; }
+            //public DbSet<AppLayoutArticle> AppLayoutArticleSet { get; set; }
+            public DbSet<AppLayoutProduct> AppLayoutProductSet { get; set; }
+            //public DbSet<AppLayoutSection> AppLayoutSectionSet { get; set; }
+            public DbSet<ViewAppLayoutMain> ViewAppLayoutMainSet { get; set; }
+            #endregion
 
         //    #region MailLogHistory
         //    public DbSet<MailLogHistory> MailLogHistorySet { get; set; }

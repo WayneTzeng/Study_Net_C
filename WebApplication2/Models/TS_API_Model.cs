@@ -48,6 +48,11 @@ namespace LifeEnterpot.Core.ModelCustom
     public class TaishinCacheData<T>
     {
         public T Data { get; set; }
+
+        public static implicit operator TaishinCacheData<T>(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 };

@@ -32,11 +32,11 @@ namespace FakeXiecheng.API.Controllers
             string Test01 = "654321";
             try
             {
-                return new ApiResult
-                {
-                    Code = ApiResultCode.OAuthTokerNoAuth,
-                    Message = Test,
-                };
+                //return new ApiResult
+                //{
+                //    Code = ApiResultCode.OAuthTokerNoAuth,
+                //    Message = Test,
+                //};
 
                 //string channelToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
                 ////bool tokenLeg = FrontFacade.TryGetChannelId(channelToken, out channelId, out channelHost);

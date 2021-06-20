@@ -8,6 +8,7 @@ using LifeEnterpot.Core.Kernel;
 using LifeEnterpot.Core.Providers;
 using LifeEnterpot.Core.Enums;
 using LifeEnterpot.Core.MockData;
+using Unipluss.Sign.ExternalContract.Entities;
 
 namespace LifeEnterpot.Core.Facades
 {
@@ -16,6 +17,8 @@ namespace LifeEnterpot.Core.Facades
         static IProductProvider pp = Ioc.Get<IProductProvider>();
 
         static IAppLayoutProvider alp = Ioc.Get<IAppLayoutProvider>();
+
+        public static List<ViewProductDeal> Products { get; private set; }
 
         public static TaishinProductDeals
             TodayHotDeals(Guid channelId, string channelHost)
@@ -27,24 +30,20 @@ namespace LifeEnterpot.Core.Facades
             }
 
             //logger.Info("main.ActionGuid:" + main.ActionGuid);
-            var bids = alp.AppLayoutProductGetList(main.ActionGuid).Select(x => new
-            {
-                Bid = x.Bid,
-                DealName = x.DealName,
-                Sort = x.Sort
-            }).ToList();
-
-            List<ViewProductDeal> products = new List<ViewProductDeal>();
-            foreach (var data in bids)
-            {
-                List<Guid> bid = new List<Guid>();
-                bid.Add(data.Bid);
-                products.AddRange(pp.ViewProductDealsGet(channelId, bid)
-                .Where(x => x.DealStartTime < DateTime.Now && x.DealEndTime >= DateTime.Now && x.Offline == false).ToList());
-            }
+            //var bids = alp.AppLayoutProductGetList(main.ActionGuid).Select(x => new
 
 
-            List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
+            //List<ViewProductDeal> Products = new List<ViewProductDeal>();
+            //foreach (var data in bids)
+            //{
+            //    List<Guid> bid = new List<Guid>();
+            //    bid.Add(data.Bid);
+            //    products.AddRange(pp.ViewProductDealsGet(channelId, bid)
+            //    .Where(x => x.DealStartTime < DateTime.Now && x.DealEndTime >= DateTime.Now && x.Offline == false).ToList());
+            //}
+
+
+            //List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
 
             #region 因應雙11先手動塞策展檔次，結束後拿掉
 
@@ -97,37 +96,37 @@ namespace LifeEnterpot.Core.Facades
             //    deals.AddRange(config.APP_TodayHotDeals);
             //}
 
-            foreach (var pd in products)
-            {
-                string dealName = pd.ProductName;
-                int dealSort = 0;
-                if (bids.Any(x => x.Bid == pd.Bid))
-                {
-                    dealName = bids.FirstOrDefault(x => x.Bid == pd.Bid).DealName;
-                    dealSort = bids.FirstOrDefault(x => x.Bid == pd.Bid).Sort;
-                }
+            //foreach (var pd in products)
+            //{
+            //    string dealName = pd.ProductName;
+            //    int dealSort = 0;
+            //    if (bids.Any(x => x.Bid == pd.Bid))
+            //    {
+            //        dealName = bids.FirstOrDefault(x => x.Bid == pd.Bid).DealName;
+            //        dealSort = bids.FirstOrDefault(x => x.Bid == pd.Bid).Sort;
+            //    }
 
-                deals.Add(new TaishinProductDealList
-                {
-                    Bid = pd.Bid.ToString(),
-                    Title = dealName,
-                    SubTitle = pd.SubTitle,
-                    ImagePath = pd.ImagePath,
-                    Price = pd.Price,
-                    OriginalPrice = pd.OriginalPrice,
-                    SoldNum = pd.SoldNum,
-                    SoldOut = pd.IsSoldOut,
-                    IsChosen = pd.IsChosen,
-                    ProductUrl = channelHost + string.Format("/product/{0}", pd.Bid.ToString()),
-                    sort = dealSort
-                });
+            //    deals.Add(new TaishinProductDealList
+            //    {
+            //        Bid = pd.Bid.ToString(),
+            //        Title = dealName,
+            //        SubTitle = pd.SubTitle,
+            //        ImagePath = pd.ImagePath,
+            //        Price = pd.Price,
+            //        OriginalPrice = pd.OriginalPrice,
+            //        SoldNum = pd.SoldNum,
+            //        SoldOut = pd.IsSoldOut,
+            //        IsChosen = pd.IsChosen,
+            //        ProductUrl = channelHost + string.Format("/product/{0}", pd.Bid.ToString()),
+            //        sort = dealSort
+            //    });
 
-            }
+            //}
             TaishinProductDeals result = new TaishinProductDeals
             {
                 Headline = main.LayoutName,
                 FunctionUrl = channelHost,
-                DealList = deals.Take(24).ToList()
+                //DealList = deals.Take(24).ToList()
             };
 
             return result;

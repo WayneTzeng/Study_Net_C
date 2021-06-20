@@ -1,3 +1,4 @@
+using LifeEnterpot.Core.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication2.MockData;
 
 namespace WebApplication2
 {
@@ -26,6 +28,7 @@ namespace WebApplication2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<IBuilding, MockBuilding>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

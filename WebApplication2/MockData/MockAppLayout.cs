@@ -59,10 +59,10 @@ namespace LifeEnterpot.Core.MockData
 
         public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
         {
-            return _roures.FirstOrDefault(n => n.ChannelId == channelId);
+            return _roures.FirstOrDefault(n => n.ChannelId == channelId && n.SectionId == sectionId && n.MainId == mainId );
         }
 
-        public AppLayoutMain AppLayoutMainGet(int id)
+        public AppLayoutMain AppLayoutMainGet(int id) 
         {
             throw new NotImplementedException();
         }

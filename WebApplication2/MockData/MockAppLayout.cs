@@ -25,11 +25,11 @@ namespace LifeEnterpot.Core.MockData
                 new AppLayoutMain
                 {
                     Id = 999 ,
-                    ChannelId = Guid.NewGuid(),
-                    SectionId = Guid.NewGuid(),
+                    ChannelId = Guid.Empty,
+                    SectionId = Guid.Empty,
                     LayoutName = "Layour測試",
                     CreateId  = "CreateId測試",
-                    ActionGuid  = Guid.NewGuid(),
+                    ActionGuid  = Guid.Empty,
                     ModifyId =  "ModifyId" ,
                     MainId = 998,
                     ModifyTime = DateTime.Now,

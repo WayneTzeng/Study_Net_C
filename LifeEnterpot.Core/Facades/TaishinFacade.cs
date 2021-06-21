@@ -18,40 +18,16 @@ namespace LifeEnterpot.Core.Facades
 
         static IAppLayoutProvider alp = Ioc.Get<IAppLayoutProvider>();
 
-        //public static List<ViewProductDeal> Products { get; private set; }
+        public static List<ViewProductDeal> Products { get; private set; }
 
-        public static TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
+        public static TaishinProductDeals
+            TodayHotDeals(Guid channelId, string channelHost)
         {
-            List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
-            //deals.Add(new TaishinProductDealList
-            //{
-            //    Bid = "123",
-            //    Title = "123",
-            //    SubTitle = "123",
-            //    ImagePath = "123",
-            //    Price = 500,
-            //    OriginalPrice = 600,
-            //    SoldNum = 30,
-            //    SoldOut = false,
-            //    IsChosen = false,
-            //    ProductUrl = "123",
-            //    sort = 1,
-            //});
-
-            TaishinProductDeals result = new TaishinProductDeals
+            ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
+            if (main == null)
             {
-                //Headline = main.LayoutName,
-                FunctionUrl = channelHost,
-                DealList = deals.Take(24).ToList()
-            };
-            return result;
-
-            //ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
-
-            // if (main == null)
-            // {
-            //     return null;
-            // }
+                return null;
+            }
 
             //logger.Info("main.ActionGuid:" + main.ActionGuid);
             //var bids = alp.AppLayoutProductGetList(main.ActionGuid).Select(x => new
@@ -67,7 +43,7 @@ namespace LifeEnterpot.Core.Facades
             //}
 
 
-
+            //List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
 
             #region 因應雙11先手動塞策展檔次，結束後拿掉
 
@@ -130,62 +106,30 @@ namespace LifeEnterpot.Core.Facades
             //        dealSort = bids.FirstOrDefault(x => x.Bid == pd.Bid).Sort;
             //    }
 
+            //    deals.Add(new TaishinProductDealList
+            //    {
+            //        Bid = pd.Bid.ToString(),
+            //        Title = dealName,
+            //        SubTitle = pd.SubTitle,
+            //        ImagePath = pd.ImagePath,
+            //        Price = pd.Price,
+            //        OriginalPrice = pd.OriginalPrice,
+            //        SoldNum = pd.SoldNum,
+            //        SoldOut = pd.IsSoldOut,
+            //        IsChosen = pd.IsChosen,
+            //        ProductUrl = channelHost + string.Format("/product/{0}", pd.Bid.ToString()),
+            //        sort = dealSort
+            //    });
 
-        }
-
-        public static TaishinCurationDeals HotCurationDeals(Guid channelId, string channelHost)
-        {
-            List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
-            deals.Add(new TaishinProductDealList
-            {
-                Bid = "TaishinProductDealList",
-                Title = "TaishinProductDealList",
-                SubTitle = "TaishinProductDealList",
-                ImagePath = "TaishinProductDealList",
-                Price = 555,
-                OriginalPrice = 6666,
-                SoldNum = 1,
-                SoldOut = false,
-                IsChosen = false,
-                ProductUrl = "TaishinProductDealList",
-            });
-            // }
-
-            TaishinCurationDeals result = new TaishinCurationDeals
-            {
-                //Headline = main.LayoutName,
-                FunctionUrl = channelHost ,
-                DealList = deals.Take(6).ToList()
-
-            };
-            return result;
-            //ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Curation);
-            //if (main == null)
-            //{
-            //    return null;
             //}
+            TaishinProductDeals result = new TaishinProductDeals
+            {
+                Headline = main.LayoutName,
+                FunctionUrl = channelHost,
+                //DealList = deals.Take(24).ToList()
+            };
 
-            //Guid curationGuid = alp.AppLayoutCurationGet(main.ActionGuid).CurationGuid;
-            //var curation = CurationFacade.GetCurationCache(curationGuid, channelId);
-
-            //var categoryPreviews = curation.CategoryPreviews.OrderBy(x => x.Sort);
-
-            //foreach (var categoryPreview in categoryPreviews)
-            //{
-            //    var productPreviews = categoryPreview.ProductPreviews.OrderBy(x => x.Sort);
-            //    foreach (var productPreview in productPreviews)
-            //{
-
-
-
-
+            return result;
         }
-
-
-
-
-
-
-
-    }
+    } 
 }

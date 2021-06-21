@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using LifeEnterpot.Core.Providers;
 using WebApplication2;
 using System.Reflection.Emit;
-
+using LifeEnterpot.WebAPI.Controllers;
 
 namespace FakeXiecheng.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/app/[controller]")]
     [ApiController]
-    public class Building : ControllerBase
+    public class Building : Controller
     {
         private IBuilding _Building;
 

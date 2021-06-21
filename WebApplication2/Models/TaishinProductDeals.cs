@@ -9,6 +9,7 @@ using LifeEnterpot.Core.Enums;
 
 namespace LifeEnterpot.Core.ModelCustom
 {
+
     public class TaishinProductDeals
     {
         // GET: TS_API_Model
@@ -45,14 +46,27 @@ namespace LifeEnterpot.Core.ModelCustom
         public string ProductUrl { get; set; }
         public int sort { get; set; }
     }
+
+    public class TaishinCurationDeals
+    {
+        public TaishinCurationDeals()
+        {
+            DealList = new List<TaishinProductDealList>();
+        }
+        public string Headline { get; set; }
+        public string FunctionUrl { get; set; }
+        public List<TaishinProductDealList> DealList { get; set; }
+    }
+
+
     public class TaishinCacheData<T>
     {
         public T Data { get; set; }
 
-        public static implicit operator TaishinCacheData<T>(string v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static implicit operator TaishinCacheData<T>(string v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
 };

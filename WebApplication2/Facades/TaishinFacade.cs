@@ -23,20 +23,45 @@ namespace LifeEnterpot.Core.Facades
         public static TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
         {
             List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
-            //deals.Add(new TaishinProductDealList
-            //{
-            //    Bid = "123",
-            //    Title = "123",
-            //    SubTitle = "123",
-            //    ImagePath = "123",
-            //    Price = 500,
-            //    OriginalPrice = 600,
-            //    SoldNum = 30,
-            //    SoldOut = false,
-            //    IsChosen = false,
-            //    ProductUrl = "123",
-            //    sort = 1,
-            //});
+            List<ViewProductDeal> products = new List<ViewProductDeal>();
+           
+            string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
+           
+            
+            //ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
+            foreach (var pd in products)
+            {
+                string dealName = pd.ProductName;
+                int dealSort = 0;
+                //deals.Add(new TaishinProductDealList
+                //{
+                //    Bid = "123",
+                //    Title = "123",
+                //    SubTitle = "123",
+                //    ImagePath = "123",
+                //    Price = 500,
+                //    OriginalPrice = 600,
+                //    SoldNum = 30,
+                //    SoldOut = false,
+                //    IsChosen = false,
+                //    ProductUrl = "123",
+                //    sort = 1,
+                //});
+                deals.Add(new TaishinProductDealList
+                {
+                    Bid = pd.Bid.ToString(),
+                    Title = dealName,
+                    SubTitle = pd.SubTitle,
+                    ImagePath = pd.ImagePath,
+                    Price = pd.Price,
+                    OriginalPrice = pd.OriginalPrice,
+                    SoldNum = pd.SoldNum,
+                    SoldOut = pd.IsSoldOut,
+                    IsChosen = pd.IsChosen,
+                    ProductUrl = channelHost + string.Format("/product/{0}", pd.Bid.ToString()),
+                    sort = dealSort
+                });
+            }
 
             TaishinProductDeals result = new TaishinProductDeals
             {
@@ -44,9 +69,10 @@ namespace LifeEnterpot.Core.Facades
                 FunctionUrl = channelHost,
                 DealList = deals.Take(24).ToList()
             };
-            return result;
 
-            //ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
+            return result;
+        
+            
 
             // if (main == null)
             // {
@@ -59,7 +85,7 @@ namespace LifeEnterpot.Core.Facades
 
             //List<ViewProductDeal> Products = new List<ViewProductDeal>();
             //foreach (var data in bids)
-            //{
+            //{ 
             //    List<Guid> bid = new List<Guid>();
             //    bid.Add(data.Bid);
             //    products.AddRange(pp.ViewProductDealsGet(channelId, bid)
@@ -159,6 +185,7 @@ namespace LifeEnterpot.Core.Facades
 
             };
             return result;
+            //return Products
             //ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Curation);
             //if (main == null)
             //{

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using LifeEnterpot.Core;
 using Autofac;
 using LifeEnterpot.Core.Providers;
-
+using LifeEnterpot.Web.Providers;
 
 namespace LifeEnterpot.Core.Kernel
 { 
@@ -21,7 +21,15 @@ namespace LifeEnterpot.Core.Kernel
             .As<IAppLayoutProvider>()
             .SingleInstance();
 
+            builder.RegisterType<ProductProvider>()
+            .As<IProductProvider>()
+            .SingleInstance();
+
+            container = builder.Build();
         }
+
+
+
 
         public static void Register(ContainerBuilder builder)
         {
@@ -44,5 +52,16 @@ namespace LifeEnterpot.Core.Kernel
             }
             return container.ResolveNamed<T>(name);
         }
-    }   
+
+        public static MemoryCache GetCache()
+        {
+            return container.Resolve<MemoryCache>();
+        }
+
+        //public static ISystemConfig GetConfig()
+        //{
+        //    return Get<ISystemConfig>();
+        //}
+
+    }
 }

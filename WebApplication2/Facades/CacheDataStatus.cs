@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LifeEnterpot.Core.Enums
+
+
+
+namespace LifeEnterpot.Core.Enums 
 {
     public enum DeliveryType
     {

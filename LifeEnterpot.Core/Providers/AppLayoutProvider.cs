@@ -13,7 +13,100 @@ namespace LifeEnterpot.Core.Providers
 {
     public class AppLayoutProvider : IAppLayoutProvider
     {
+        private List<AppLayoutMain> _roures;
 
+        public AppLayoutProvider()
+        {
+            if (_roures == null)
+            {
+                MockDataTest();
+            }
+        }
+        private void MockDataTest()
+        {
+            _roures = new List<AppLayoutMain>
+            {
+                new AppLayoutMain
+                {
+                    Id = 999 ,
+                    ChannelId = Guid.Empty,
+                    SectionId = Guid.Empty,
+                    LayoutName = "Layour測試",
+                    CreateId  = "CreateId測試",
+                    ActionGuid  = Guid.Empty,
+                    ModifyId =  "ModifyId" ,
+                    MainId = 998,
+                    ModifyTime = DateTime.Now,
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now,
+                 },
+
+                new AppLayoutMain
+                {
+                    Id = 999 ,
+                    ChannelId = Guid.Empty,
+                    SectionId = Guid.Empty,
+                    LayoutName = "Layour測試",
+                    CreateId  = "CreateId測試",
+                    ActionGuid  =  Guid.Empty,
+                    ModifyId =  "ModifyId" ,
+                    MainId = 998,
+                    ModifyTime = DateTime.Now,
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now
+                 }
+
+            };
+        }
+
+
+
+        public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
+        {
+            return _roures.FirstOrDefault(n => n.ChannelId == channelId && n.SectionId == sectionId && n.MainId == mainId);
+            //return null;
+            //throw new NotImplementedException();
+        }
+
+        public AppLayoutMain AppLayoutMainGet(int id)
+        {
+            return _roures.FirstOrDefault(x => x.Id == id);
+
+            //return null;
+            //throw new NotImplementedException();
+        }
+
+        public List<AppLayoutMain> AppLayoutMainGetLast(Guid channelId, Guid sectionId)
+        {
+            //return _roures.FirstOrDefault(n => n.ChannelId == channelId && n.SectionId == sectionId && n.MainId == mainId);
+
+            return null;
+            //throw new NotImplementedException();
+        }
+
+        public AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid)
+        {
+            return null;
+            //throw new NotImplementedException();
+        }
+
+        public List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid)
+        {
+            return null;
+            //throw new NotImplementedException();
+        }
+
+        public ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num)
+        {
+            return null;
+            //throw new NotImplementedException();
+        }
+
+        public List<Guid> AppLayoutMainGetActionGuid(Guid channelId, Guid sectionId, int mainId)
+        {
+            return null;
+            //throw new NotImplementedException();
+        }
         //    #region AppLayoutMain
         //    public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
         //    {
@@ -91,46 +184,6 @@ namespace LifeEnterpot.Core.Providers
         //}
         //    #endregion AppLayoutMain
 
-        public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
 
-        public AppLayoutMain AppLayoutMainGet(int id)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
-
-        public List<Guid> AppLayoutMainGetActionGuid(Guid channelId, Guid sectionId, int mainId)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
-
-        public List<AppLayoutMain> AppLayoutMainGetLast(Guid channelId, Guid sectionId)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
-
-        public AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
-
-        public List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
-
-        public ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num)
-        {
-            return null;
-            //throw new NotImplementedException();
-        }
     }
 }

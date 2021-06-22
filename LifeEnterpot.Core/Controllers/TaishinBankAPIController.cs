@@ -24,7 +24,7 @@ namespace LifeEnterpot.WebAPI.Controllers
     {
         static ILog logger = LogManager.GetLogger(typeof(TaishinBankAPIController));
 
-        [HttpPost]
+        [HttpGet]
         public dynamic TodayHotDeals()
         {
             Guid channelId = Guid.Empty;

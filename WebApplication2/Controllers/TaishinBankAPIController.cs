@@ -44,15 +44,15 @@ namespace LifeEnterpot.WebAPI.Controllers
                 }
 
 
-                //string channelToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-                ////bool tokenLeg = FrontFacade.TryGetChannelId(channelToken, out channelId, out channelHost);
+                string channelToken = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+                bool tokenLeg = true; //FrontFacade.TryGetChannelId(channelToken, out channelId, out channelHost);
 
-                //return new ApiResult
-                //{
-                //    Code = ApiResultCode.OAuthTokerNoAuth,
-                //    Message = Test01,
+                return new ApiResult
+                {
+                    Code = ApiResultCode.OAuthTokerNoAuth,
+                    Message = Test01,
 
-                //};
+                };
                 TaishinProductDeals deals =  TaishinCacheFacade.TodayHotDeals(channelId, channelHost);
                 
                 if (deals == null)

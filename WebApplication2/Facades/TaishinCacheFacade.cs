@@ -16,6 +16,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Net.Mime;
+using LifeEnterpot.Core.Kernel;
 
 namespace LifeEnterpot.Core.Facades
 {
@@ -41,7 +42,7 @@ namespace LifeEnterpot.Core.Facades
                 {
                     Data = data
                 };
-               // CacheFacade.Set(key, result, Ioc.GetConfig().TaishinDefaultCacheMinute);
+                CacheFacade.Set(key, result, Ioc.GetConfig().TaishinDefaultCacheMinute);
             }
             return result.Data;
         }

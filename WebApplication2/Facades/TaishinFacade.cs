@@ -9,6 +9,7 @@ using LifeEnterpot.Core.Providers;
 using LifeEnterpot.Core.Enums;
 using LifeEnterpot.Core.MockData;
 using Unipluss.Sign.ExternalContract.Entities;
+using LifeEnterpot.Core.Enum;
 
 namespace LifeEnterpot.Core.Facades
 {
@@ -28,7 +29,7 @@ namespace LifeEnterpot.Core.Facades
             string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
            
             
-            //ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
+            ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
             foreach (var pd in products)
             {
                 string dealName = pd.ProductName;

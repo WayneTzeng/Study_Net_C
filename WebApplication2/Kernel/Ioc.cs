@@ -58,10 +58,10 @@ namespace LifeEnterpot.Core.Kernel
             return container.Resolve<MemoryCache>();
         }
 
-        //public static ISystemConfig GetConfig()
-        //{
-        //    return Get<ISystemConfig>();
-        //}
+        public static ISystemConfig GetConfig()
+        {
+            return Get<ISystemConfig>();
+        }
 
     }
 }

@@ -58,10 +58,10 @@ namespace LifeEnterpot.Web.Providers
 
         public List<ViewProductDeal> ViewProductDealsAll()
         {
-
+            List<a> = { 123 };
             
-            return null;
-            //return _roures;
+             //return null ;
+             return a ;
             //throw new NotImplementedException();
         }
 

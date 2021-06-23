@@ -78,20 +78,24 @@ namespace LifeEnterpot.Core.Providers
 
         public List<AppLayoutMain> AppLayoutMainGetLast(Guid channelId, Guid sectionId)
         {
-            //return _roures.FirstOrDefault(n => n.ChannelId == channelId && n.SectionId == sectionId && n.MainId == mainId);
-
-            return null;
+            //return _roures.FirstOrDefault(n => n.ChannelId == channelId && n.SectionId == sectionId ).ToList();
+            return this._roures;
+            //return null;
             //throw new NotImplementedException();
         }
 
         public AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid)
         {
-            return null;
+            return _roures.FirstOrDefault(n => n.ActionGuid == actionGuid && n.Bid == bid).ToList();
+
+            //return null;
+            //return this._roures;
             //throw new NotImplementedException();
         }
 
         public List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid)
         {
+            //return this._roures;
             return null;
             //throw new NotImplementedException();
         }

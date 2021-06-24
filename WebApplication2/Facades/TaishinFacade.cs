@@ -23,13 +23,19 @@ namespace LifeEnterpot.Core.Facades
 
         public static TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
         {
-            List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
-            List<ViewProductDeal> products = new List<ViewProductDeal>();
-           
-            string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
-           
-            
+            Console.WriteLine("TaishinFacade");
+
+
+            //string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
+            Console.WriteLine("key");
             ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
+            Console.WriteLine(main);
+
+            List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
+            Console.WriteLine(deals);
+
+            List<ViewProductDeal> products = new List<ViewProductDeal>();
+            Console.WriteLine(products);
             foreach (var pd in products)
             {
                 string dealName = pd.ProductName;

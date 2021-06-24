@@ -26,8 +26,10 @@ namespace LifeEnterpot.Core.Facades
         private static ILog logger = LogManager.GetLogger(typeof(CacheFacade));
         protected class CacheData<T>
         {
+            
             public static CacheData<T> Create(T t)
             {
+                Console.WriteLine("Open_CacheData");
                 return new CacheData<T>
                 {
                     CreateTime = DateTime.Now,

@@ -14,6 +14,9 @@ namespace LifeEnterpot.Core.Providers
     public class AppLayoutProvider : IAppLayoutProvider
     {
         private List<AppLayoutMain> _roures;
+        private List<AppLayoutProduct> _roures01;
+        private List<ViewAppLayoutMain> _roures02;
+
 
         public AppLayoutProvider()
         {
@@ -22,7 +25,7 @@ namespace LifeEnterpot.Core.Providers
                 MockDataTest();
             }
         }
-        private void MockDataTest()
+        public void MockDataTest()
         {
             _roures = new List<AppLayoutMain>
             {
@@ -41,25 +44,61 @@ namespace LifeEnterpot.Core.Providers
                     EndTime = DateTime.Now,
                  },
 
-                new AppLayoutMain
-                {
-                    Id = 999 ,
-                    ChannelId = Guid.Empty,
-                    SectionId = Guid.Empty,
-                    LayoutName = "Layour測試",
-                    CreateId  = "CreateId測試",
-                    ActionGuid  =  Guid.Empty,
-                    ModifyId =  "ModifyId" ,
-                    MainId = 998,
-                    ModifyTime = DateTime.Now,
-                    StartTime = DateTime.Now,
-                    EndTime = DateTime.Now
-                 }
+                //new AppLayoutMain
+                //{
+                //    Id = 999 ,
+                //    ChannelId = Guid.Empty,
+                //    SectionId = Guid.Empty,
+                //    LayoutName = "Layour測試",
+                //    CreateId  = "CreateId測試",
+                //    ActionGuid  =  Guid.Empty,
+                //    ModifyId =  "ModifyId" ,
+                //    MainId = 998,
+                //    ModifyTime = DateTime.Now,
+                //    StartTime = DateTime.Now,
+                //    EndTime = DateTime.Now,
+                    
+                // }
 
             };
         }
+        public void MockDataAppLayoutProduct()
+        {
+            _roures01 = new List<AppLayoutProduct>
+            {
+                new AppLayoutProduct
+                {
+                     Id = 7777,
+                    ActionGuid = Guid.Empty,
+                    Bid = Guid.Empty,
+                    Latest =7777,
+                    Sort =777,
+                    DealName = "AppLayoutProduct",
+                }               
+            };
+        }
 
-
+        public void MockDataViewAppLayoutMain()
+        {
+            _roures02 = new List<ViewAppLayoutMain>
+            {
+                new ViewAppLayoutMain
+                {
+		            Id =777,
+		            ChannelId  = Guid.Empty,
+		            Type  =1,
+                    Status =1,
+                    Memo ="Memo",
+                    LayoutName  ="LayoutName",
+                    StartTime  =DateTime.Now,
+                    EndTime =  DateTime.Now,
+                    CreateId  ="CreateId",
+                    CreateTime =  DateTime.Now,
+                    ActionGuid  =Guid.Empty,
+                    MainId  =999,
+                }
+            };
+        }
 
         public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
         {
@@ -78,36 +117,34 @@ namespace LifeEnterpot.Core.Providers
 
         public List<AppLayoutMain> AppLayoutMainGetLast(Guid channelId, Guid sectionId)
         {
-            //return _roures.FirstOrDefault(n => n.ChannelId == channelId && n.SectionId == sectionId ).ToList();
-            return this._roures;
+
+            return _roures.ToList();
+                //.Where(n => n.ChannelId == channelId && n.SectionId == sectionId ).ToList();
+            //return this._roures;
             //return null;
             //throw new NotImplementedException();
         }
 
         public AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid)
-        {
-            return _roures.FirstOrDefault(n => n.ActionGuid == actionGuid && n.Bid == bid).ToList();
-
-            //return null;
-            //return this._roures;
-            //throw new NotImplementedException();
+        {           
+            return _roures01.FirstOrDefault(n => n.ActionGuid == actionGuid && n.Bid == bid);     
         }
 
         public List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid)
         {
-            //return this._roures;
-            return null;
-            //throw new NotImplementedException();
+            return _roures01.ToList();
         }
 
         public ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num)
         {
-            return null;
+            return _roures02.FirstOrDefault();
+            //return null;
             //throw new NotImplementedException();
         }
 
         public List<Guid> AppLayoutMainGetActionGuid(Guid channelId, Guid sectionId, int mainId)
         {
+            //return _roures.Last();
             return null;
             //throw new NotImplementedException();
         }

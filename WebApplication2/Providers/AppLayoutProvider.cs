@@ -23,6 +23,8 @@ namespace LifeEnterpot.Core.Providers
             if (_roures == null)
             {
                 MockDataTest();
+                MockDataAppLayoutProduct();
+                MockDataViewAppLayoutMain();
             }
         }
         public void MockDataTest()
@@ -109,6 +111,7 @@ namespace LifeEnterpot.Core.Providers
 
         public AppLayoutMain AppLayoutMainGet(int id)
         {
+            MockDataTest();
             return _roures.FirstOrDefault(x => x.Id == id);
 
             //return null;
@@ -117,7 +120,7 @@ namespace LifeEnterpot.Core.Providers
 
         public List<AppLayoutMain> AppLayoutMainGetLast(Guid channelId, Guid sectionId)
         {
-
+            MockDataTest();
             return _roures.ToList();
                 //.Where(n => n.ChannelId == channelId && n.SectionId == sectionId ).ToList();
             //return this._roures;
@@ -126,17 +129,20 @@ namespace LifeEnterpot.Core.Providers
         }
 
         public AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid)
-        {           
+        {
+            MockDataAppLayoutProduct();
             return _roures01.FirstOrDefault(n => n.ActionGuid == actionGuid && n.Bid == bid);     
         }
 
         public List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid)
         {
+            MockDataAppLayoutProduct();
             return _roures01.ToList();
         }
 
         public ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num)
         {
+            MockDataViewAppLayoutMain();
             return _roures02.FirstOrDefault();
             //return null;
             //throw new NotImplementedException();

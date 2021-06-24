@@ -28,6 +28,7 @@ namespace LifeEnterpot.Core.Facades
 
             //string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
             Console.WriteLine("key");
+            Console.WriteLine(alp.ViewAppLayoutMainGet(channelId));
             ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
             Console.WriteLine(main);
 

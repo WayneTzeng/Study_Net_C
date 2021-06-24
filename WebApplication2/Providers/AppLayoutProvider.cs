@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using LifeEnterpot.Core.Enums;
-
+using LifeEnterpot.Core.ModelCustom;
 
 namespace LifeEnterpot.Core.Providers
 {
@@ -16,18 +16,16 @@ namespace LifeEnterpot.Core.Providers
         private List<AppLayoutMain> _roures;
         private List<AppLayoutProduct> _roures01;
         private List<ViewAppLayoutMain> _roures02;
+        private List<TaishinProductDealList> _roures03;
 
-
-        public AppLayoutProvider()
+        public  AppLayoutProvider()
         {
-            if (_roures == null)
-            {
-                MockDataTest();
-                MockDataAppLayoutProduct();
-                MockDataViewAppLayoutMain();
-            }
+            MockDataTest();
+            MockDataAppLayoutProduct();
+            MockDataViewAppLayoutMain();
+            MockDataTaishinProductDealList();
         }
-        public void MockDataTest()
+        public  void MockDataTest()
         {
             _roures = new List<AppLayoutMain>
             {
@@ -64,7 +62,7 @@ namespace LifeEnterpot.Core.Providers
 
             };
         }
-        public void MockDataAppLayoutProduct()
+        public  void MockDataAppLayoutProduct()
         {
             _roures01 = new List<AppLayoutProduct>
             {
@@ -78,6 +76,11 @@ namespace LifeEnterpot.Core.Providers
                     DealName = "AppLayoutProduct",
                 }               
             };
+        }
+
+        internal object GetAppLayoutProviders()
+        {
+            return _roures03;
         }
 
         public void MockDataViewAppLayoutMain()
@@ -98,9 +101,34 @@ namespace LifeEnterpot.Core.Providers
                     CreateTime =  DateTime.Now,
                     ActionGuid  =Guid.Empty,
                     MainId  =999,
+                   
                 }
             };
         }
+
+        public void MockDataTaishinProductDealList()
+        {
+            _roures03 = new List<TaishinProductDealList>
+            {
+                new TaishinProductDealList
+                {
+                    Bid = "123",
+                    Title = "123",
+                    SubTitle = "123",
+                    ImagePath = "123",
+                    Price = 500,
+                    OriginalPrice = 600,
+                    SoldNum = 30,
+                    SoldOut = false,
+                    IsChosen = false,
+                    ProductUrl = "123",
+                    sort = 1,
+
+                }
+            };
+        }
+
+
 
         public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
         {
@@ -111,7 +139,6 @@ namespace LifeEnterpot.Core.Providers
 
         public AppLayoutMain AppLayoutMainGet(int id)
         {
-            MockDataTest();
             return _roures.FirstOrDefault(x => x.Id == id);
 
             //return null;
@@ -120,7 +147,7 @@ namespace LifeEnterpot.Core.Providers
 
         public List<AppLayoutMain> AppLayoutMainGetLast(Guid channelId, Guid sectionId)
         {
-            MockDataTest();
+
             return _roures.ToList();
                 //.Where(n => n.ChannelId == channelId && n.SectionId == sectionId ).ToList();
             //return this._roures;
@@ -129,20 +156,17 @@ namespace LifeEnterpot.Core.Providers
         }
 
         public AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid)
-        {
-            MockDataAppLayoutProduct();
+        {           
             return _roures01.FirstOrDefault(n => n.ActionGuid == actionGuid && n.Bid == bid);     
         }
 
         public List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid)
         {
-            MockDataAppLayoutProduct();
             return _roures01.ToList();
         }
 
         public ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num)
         {
-            MockDataViewAppLayoutMain();
             return _roures02.FirstOrDefault();
             //return null;
             //throw new NotImplementedException();
@@ -154,6 +178,13 @@ namespace LifeEnterpot.Core.Providers
             return null;
             //throw new NotImplementedException();
         }
+
+        IEnumerable<AppLayoutProvider> IAppLayoutProvider.GetAppLayoutProviders()
+        {
+            return (IEnumerable<AppLayoutProvider>)_roures03;
+        }
+
+
         //    #region AppLayoutMain
         //    public AppLayoutMain AppLayoutMainGet(Guid channelId, Guid sectionId, int mainId)
         //    {

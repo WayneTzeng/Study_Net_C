@@ -15,69 +15,106 @@ namespace LifeEnterpot.Core.Facades
 {
     public class TaishinFacade
     {
-        static IProductProvider pp = Ioc.Get<IProductProvider>();
+        //static IProductProvider pp = Ioc.Get<IProductProvider>();
 
-        static IAppLayoutProvider alp = Ioc.Get<IAppLayoutProvider>();
+        //static IAppLayoutProvider alp = Ioc.Get<IAppLayoutProvider>();
 
         //public static List<ViewProductDeal> Products { get; private set; }
 
-        public static TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
+        public  TaishinProductDeals TodayHotDeals(Guid channelId, string channelHost)
         {
             Console.WriteLine("TaishinFacade");
 
 
             //string key = string.Format("TodayHotDeals://{0}/{1}", channelId, channelHost);
             Console.WriteLine("key");
-            Console.WriteLine(alp.ViewAppLayoutMainGet(channelId));
-            ViewAppLayoutMain main = alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
-            Console.WriteLine(main);
+            //Console.WriteLine(alp.ViewAppLayoutMainGet(channelId));
+
+            ViewAppLayoutMain main = null;//alp.ViewAppLayoutMainGet(channelId, (int)AppLayoutSectionEnum.Product);
+            //if (main == null)
+            //{
+            //    return null;
+            //}
+            //Console.WriteLine(main);
 
             List<TaishinProductDealList> deals = new List<TaishinProductDealList>();
             Console.WriteLine(deals);
-
             List<ViewProductDeal> products = new List<ViewProductDeal>();
-            Console.WriteLine(products);
-            foreach (var pd in products)
+            //Console.WriteLine(products);
+
+            
+            AppLayoutProvider ap = new AppLayoutProvider();
+            //var MockAppLayoutProvider = ap.GetAppLayoutProviders();
+            Console.WriteLine(ap.GetAppLayoutProviders().GetHashCode());
+            //deals.Add(new TaishinProductDealList( _);
+
+            ////ap.GetAppLayoutProviders() AppLayoutProvider = ap.GetAppLayoutProviders();
+            //deals.Add(new TaishinProductDealList { ap.AppLa });
+
+            deals.Add(new TaishinProductDealList
             {
-                string dealName = pd.ProductName;
-                int dealSort = 0;
-                //deals.Add(new TaishinProductDealList
-                //{
-                //    Bid = "123",
-                //    Title = "123",
-                //    SubTitle = "123",
-                //    ImagePath = "123",
-                //    Price = 500,
-                //    OriginalPrice = 600,
-                //    SoldNum = 30,
-                //    SoldOut = false,
-                //    IsChosen = false,
-                //    ProductUrl = "123",
-                //    sort = 1,
-                //});
-                deals.Add(new TaishinProductDealList
+                Bid = "123",
+                Title = "123",
+                SubTitle = "123",
+                ImagePath = "123",
+                Price = 500,
+                OriginalPrice = 600,
+                SoldNum = 30,
+                SoldOut = false,
+                IsChosen = false,
+                ProductUrl = "123",
+                sort = 1,
+
+            });
+
+            deals.Add(new TaishinProductDealList
+            {
+                Bid = "123",
+                Title = "123",
+                SubTitle = "123",
+                ImagePath = "123",
+                Price = 500,
+                OriginalPrice = 600,
+                SoldNum = 30,
+                SoldOut = false,
+                IsChosen = false,
+                ProductUrl = "123",
+                sort = 1,
+
+            });
+
+            products.Add(new ViewProductDeal 
                 {
-                    Bid = pd.Bid.ToString(),
-                    Title = dealName,
-                    SubTitle = pd.SubTitle,
-                    ImagePath = pd.ImagePath,
-                    Price = pd.Price,
-                    OriginalPrice = pd.OriginalPrice,
-                    SoldNum = pd.SoldNum,
-                    SoldOut = pd.IsSoldOut,
-                    IsChosen = pd.IsChosen,
-                    ProductUrl = channelHost + string.Format("/product/{0}", pd.Bid.ToString()),
-                    sort = dealSort
+                    Pvid = 1111,
+                    ChannelId = Guid.Empty,
+                    Bid  = Guid.Empty,
+                    ProductName = "ProductName",
+                    SubTitle = "SubTitle",
+                    ImagePath = "ImagePath",
+                    Price = 500,
+                    OriginalPrice = 600,
+                    OnTop = false,
+                    Offline = null,
+                    IsChosen = false,
+                    IsMain =true,
+                    DeliveryType = 2,
+                    BehaviorType = 1,
+                    IsSoldOut = false,
+                    DealStartTime = DateTime.Now,
+                    DealEndTime = DateTime.Now,
+                    Seq = 11111,
+                    Version = 1,
                 });
-            }
+            //}
 
             TaishinProductDeals result = new TaishinProductDeals
             {
+
                 //Headline = main.LayoutName,
                 FunctionUrl = channelHost,
-                DealList = deals.Take(24).ToList()
+                DealList = deals.Take(24).ToList(),
             };
-
+            Console.WriteLine(result.ToString());
             return result;
         
             

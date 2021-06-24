@@ -12,11 +12,15 @@ namespace LifeEnterpot.Core.Providers
         AppLayoutMain AppLayoutMainGet(int id);
         List<Guid> AppLayoutMainGetActionGuid(Guid channelId, Guid sectionId, int mainId);
         ViewAppLayoutMain ViewAppLayoutMainGet(Guid channelId, int num);
+        IEnumerable<AppLayoutProvider> GetAppLayoutProviders();
+        
+
         #endregion AppLayoutMain
 
         #region AppLayoutProduct
         List<AppLayoutProduct> AppLayoutProductGetList(Guid actionGuid);
         AppLayoutProduct AppLayoutProductGet(Guid actionGuid, Guid bid);
+        //IEnumerable<AppLayoutProvider> GetAppLayoutProviders();
         #endregion AppLayoutProduct
 
 

@@ -1,5 +1,4 @@
-﻿using LifeEnterpot.Core.Enums;
-//using LifeEnterpot.Core.Kernel;
+﻿//using LifeEnterpot.Core.Kernel;
 //using LifeEnterpot.Core.Models;
 //using LifeEnterpot.Core.Providers;
 //using LifeEnterpot.Core.Template;
@@ -7,16 +6,8 @@
 //using LifeEnterpot.Core.Utilities.TemplateHelper;
 //using LifeEnterpot.Core.Utilities;
 using LifeEnterpot.Core.ModelCustom;
-using log4net;
 //using RazorLight;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Net.Mime;
-using LifeEnterpot.Core.Kernel;
 
 namespace LifeEnterpot.Core.Facades
 {
@@ -39,20 +30,27 @@ namespace LifeEnterpot.Core.Facades
             Console.WriteLine(key);
             Console.WriteLine("Format");
 
-            TaishinCacheData<TaishinProductDeals> result = null;//  CacheFacade.Get<TaishinCacheData<TaishinProductDeals>>(key);
+            TaishinCacheData<TaishinProductDeals> result = null;//CacheFacade.Get<TaishinCacheData<TaishinProductDeals>>(key);
            
             Console.WriteLine("Open_CacheFacade");
             Console.WriteLine(result);
 
             if (result == null)
             {
-                var data = TaishinFacade.TodayHotDeals(channelId, channelHost);
+                Console.WriteLine("TaishinFacade");
+                TaishinFacade tf = new TaishinFacade();
+                var data = tf.TodayHotDeals(channelId, channelHost);
+                Console.WriteLine(data);
+                Console.WriteLine("TaishinCacheData");
                 result = new TaishinCacheData<TaishinProductDeals>
                 {
+                    
                     Data = data
                 };
-                CacheFacade.Set(key, result, Ioc.GetConfig().TaishinDefaultCacheMinute);
+                Console.WriteLine("Data");
+                //CacheFacade.Set(key, result, Ioc.GetConfig().TaishinDefaultCacheMinute);
             }
+            Console.WriteLine(result.Data.ToString());
             return result.Data;
         }
 

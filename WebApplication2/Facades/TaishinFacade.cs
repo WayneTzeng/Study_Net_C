@@ -45,11 +45,12 @@ namespace LifeEnterpot.Core.Facades
             
             AppLayoutProvider ap = new AppLayoutProvider();
             //var MockAppLayoutProvider = ap.GetAppLayoutProviders();
-            Console.WriteLine(ap.GetAppLayoutProviders().GetHashCode());
+            
+            Console.WriteLine(ap.GetAppLayoutProviders().ToString());
             //deals.Add(new TaishinProductDealList( _);
 
             ////ap.GetAppLayoutProviders() AppLayoutProvider = ap.GetAppLayoutProviders();
-            //deals.Add(new TaishinProductDealList { ap.AppLa });
+            //deals.Add(new TaishinProductDealList { ap.GetAppLayoutProviders() });
 
             deals.Add(new TaishinProductDealList
             {
@@ -82,7 +83,7 @@ namespace LifeEnterpot.Core.Facades
                 sort = 1,
 
             });
-
+            Console.WriteLine(deals);
             products.Add(new ViewProductDeal 
                 {
                     Pvid = 1111,
